@@ -1,8 +1,6 @@
 <script lang="ts">
   import quran from "../utils/quran";
 
-  console.log(quran);
-
   let memorizationSurahNumber = $state(0);
   let memorizationStartAyah = $state(0);
   let memorizationEndAyah = $state(0);
