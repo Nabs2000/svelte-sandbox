@@ -13,6 +13,4 @@ const formattedQuran = surahs.map((surah: any) => {
   };
 });
 
-console.log(formattedQuran);
-
 export default formattedQuran;

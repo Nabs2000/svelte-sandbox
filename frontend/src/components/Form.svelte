@@ -1,5 +1,6 @@
 <script lang="ts">
   import quran from "../utils/quran";
+  import addQuranSession from "../api/addQuranSession";
 
   let memorizationSurahNumber = $state(0);
   let memorizationStartAyah = $state(0);
@@ -11,10 +12,51 @@
   let farReviewStartAyah = $state(0);
   let farReviewEndAyah = $state(0);
 
-  function handleSubmit(event: Event) {
-    console.log("Submitting form...");
-    // TODO: Post to Supabase
-
+  async function handleSubmit(event: Event) {
+    // Log all the memorization form data
+    console.log("Memorization Surah Number:", memorizationSurahNumber);
+    console.log("Memorization Start Ayah:", memorizationStartAyah);
+    console.log("Memorization End Ayah:", memorizationEndAyah);
+    if (
+      !memorizationSurahNumber ||
+      !memorizationStartAyah ||
+      !memorizationEndAyah
+    ) {
+      console.error("Missing memorization form data!");
+      return;
+    }
+    if (!nearReviewSurahNumber || !nearReviewStartAyah || !nearReviewEndAyah) {
+      console.error("Missing near review form data!");
+      return;
+    }
+    if (!farReviewSurahNumber || !farReviewStartAyah || !farReviewEndAyah) {
+      console.error("Missing far review form data!");
+      return;
+    }
+    await addQuranSession(
+      "memorization",
+      memorizationSurahNumber,
+      quran[memorizationSurahNumber - 1].name,
+      memorizationStartAyah,
+      memorizationEndAyah
+    );
+    console.log("Submitted memorization form!");
+    await addQuranSession(
+      "review",
+      nearReviewSurahNumber,
+      quran[nearReviewSurahNumber - 1].name,
+      nearReviewStartAyah,
+      nearReviewEndAyah
+    );
+    console.log("Submitted near review form!");
+    await addQuranSession(
+      "review",
+      farReviewSurahNumber,
+      quran[farReviewSurahNumber - 1].name,
+      farReviewStartAyah,
+      farReviewEndAyah
+    );
+    console.log("Submitted far review form!");
     // Reset form
     event.preventDefault();
     memorizationSurahNumber = 0;
@@ -90,7 +132,7 @@
       </select>
       <label for="memorization">Start Ayah</label>
       {#if memorizationSurahNumber}
-        <select name="startAyah" id="startAyah">
+        <select name="startAyah" id="startAyah" onclick={handleMemorizationStartAyahChange}>
           {#each { length: quran[memorizationSurahNumber - 1].ayahs } as _, ayahNumber}
             <option value={ayahNumber + 1}>{ayahNumber + 1}</option>
           {/each}
@@ -98,7 +140,7 @@
       {/if}
       <label for="memorization">End Ayah</label>
       {#if memorizationSurahNumber}
-        <select name="endAyah" id="endAyah">
+        <select name="endAyah" id="endAyah" onclick={handleMemorizationEndAyahChange}>
           {#each { length: quran[memorizationSurahNumber - 1].ayahs } as _, ayahNumber}
             <option value={ayahNumber + 1}>{ayahNumber + 1}</option>
           {/each}
@@ -121,7 +163,7 @@
       </select>
       <label for="nearReview">Start Ayah</label>
       {#if nearReviewSurahNumber}
-        <select name="startAyah" id="startAyah">
+        <select name="startAyah" id="startAyah" onclick={handleNearReviewStartAyahChange}>
           {#each { length: quran[nearReviewSurahNumber - 1].ayahs } as _, ayahNumber}
             <option value={ayahNumber + 1}>{ayahNumber + 1}</option>
           {/each}
@@ -129,7 +171,7 @@
       {/if}
       <label for="nearReview">End Ayah</label>
       {#if nearReviewSurahNumber}
-        <select name="endAyah" id="endAyah">
+        <select name="endAyah" id="endAyah" onclick={handleNearReviewEndAyahChange}>
           {#each { length: quran[nearReviewSurahNumber - 1].ayahs } as _, ayahNumber}
             <option value={ayahNumber + 1}>{ayahNumber + 1}</option>
           {/each}
@@ -152,7 +194,7 @@
       </select>
       <label for="farReview">Start Ayah</label>
       {#if farReviewSurahNumber}
-        <select name="startAyah" id="startAyah">
+        <select name="startAyah" id="startAyah" onclick={handleFarReviewStartAyahChange}>
           {#each { length: quran[farReviewSurahNumber - 1].ayahs } as _, ayahNumber}
             <option value={ayahNumber + 1}>{ayahNumber + 1}</option>
           {/each}
@@ -160,7 +202,7 @@
       {/if}
       <label for="farReview">End Ayah</label>
       {#if farReviewSurahNumber}
-        <select name="endAyah" id="endAyah">
+        <select name="endAyah" id="endAyah" onclick={handleFarReviewEndAyahChange}>
           {#each { length: quran[farReviewSurahNumber - 1].ayahs } as _, ayahNumber}
             <option value={ayahNumber + 1}>{ayahNumber + 1}</option>
           {/each}
