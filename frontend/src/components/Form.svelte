@@ -116,6 +116,8 @@
   }
 </script>
 
+<h1>Form</h1>
+
 <form action="" method="get" class="form-example" onsubmit={handleSubmit}>
   <div class="form-example">
     <p>Memorization</p>
@@ -126,6 +128,7 @@
         id="memorization"
         onclick={handleMemorizationSurahChange}
       >
+        <option value="">Select Surah</option>
         {#each quran as surah}
           <option value={surah.number}>{surah.number} - {surah.name}</option>
         {/each}
@@ -133,6 +136,7 @@
       <label for="memorization">Start Ayah</label>
       {#if memorizationSurahNumber}
         <select name="startAyah" id="startAyah" onclick={handleMemorizationStartAyahChange}>
+          <option value="">Select Ayah</option>
           {#each { length: quran[memorizationSurahNumber - 1].ayahs } as _, ayahNumber}
             <option value={ayahNumber + 1}>{ayahNumber + 1}</option>
           {/each}
@@ -141,6 +145,7 @@
       <label for="memorization">End Ayah</label>
       {#if memorizationSurahNumber}
         <select name="endAyah" id="endAyah" onclick={handleMemorizationEndAyahChange}>
+          <option value="">Select Ayah</option>
           {#each { length: quran[memorizationSurahNumber - 1].ayahs } as _, ayahNumber}
             <option value={ayahNumber + 1}>{ayahNumber + 1}</option>
           {/each}
@@ -157,6 +162,7 @@
         id="nearReview"
         onclick={handleNearReviewSurahChange}
       >
+        <option value="">Select Surah</option>
         {#each quran as surah}
           <option value={surah.number}>{surah.number} - {surah.name}</option>
         {/each}
@@ -164,6 +170,7 @@
       <label for="nearReview">Start Ayah</label>
       {#if nearReviewSurahNumber}
         <select name="startAyah" id="startAyah" onclick={handleNearReviewStartAyahChange}>
+          <option value="">Select Ayah</option>
           {#each { length: quran[nearReviewSurahNumber - 1].ayahs } as _, ayahNumber}
             <option value={ayahNumber + 1}>{ayahNumber + 1}</option>
           {/each}
@@ -172,6 +179,7 @@
       <label for="nearReview">End Ayah</label>
       {#if nearReviewSurahNumber}
         <select name="endAyah" id="endAyah" onclick={handleNearReviewEndAyahChange}>
+          <option value="">Select Ayah</option>
           {#each { length: quran[nearReviewSurahNumber - 1].ayahs } as _, ayahNumber}
             <option value={ayahNumber + 1}>{ayahNumber + 1}</option>
           {/each}
@@ -188,6 +196,7 @@
         id="farReview"
         onclick={handleFarReviewSurahChange}
       >
+        <option value="">Select Surah</option>
         {#each quran as surah}
           <option value={surah.number}>{surah.number} - {surah.name}</option>
         {/each}
@@ -195,6 +204,7 @@
       <label for="farReview">Start Ayah</label>
       {#if farReviewSurahNumber}
         <select name="startAyah" id="startAyah" onclick={handleFarReviewStartAyahChange}>
+          <option value="">Select Ayah</option>
           {#each { length: quran[farReviewSurahNumber - 1].ayahs } as _, ayahNumber}
             <option value={ayahNumber + 1}>{ayahNumber + 1}</option>
           {/each}
@@ -203,6 +213,7 @@
       <label for="farReview">End Ayah</label>
       {#if farReviewSurahNumber}
         <select name="endAyah" id="endAyah" onclick={handleFarReviewEndAyahChange}>
+          <option value="">Select Ayah</option>
           {#each { length: quran[farReviewSurahNumber - 1].ayahs } as _, ayahNumber}
             <option value={ayahNumber + 1}>{ayahNumber + 1}</option>
           {/each}
