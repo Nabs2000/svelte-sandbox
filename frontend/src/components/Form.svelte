@@ -1,4 +1,4 @@
-<form action="" method="get" class="form-example">
+<form action="" method="get" class="form-example" onsubmit={handleSubmit}>
   <div class="form-example">
     <p>Memorization</p>
     <div>
@@ -99,6 +99,23 @@
     let farReviewSurahNumber = $state(0);
     let farReviewStartAyah = $state(0);
     let farReviewEndAyah = $state(0);
+
+    function handleSubmit(event: Event) {
+      console.log("Submitting form...")
+      // TODO: Post to Supabase
+      
+      // Reset form
+      event.preventDefault();
+      memorizationSurahNumber = 0;
+      memorizationStartAyah = 0;
+      memorizationEndAyah = 0;
+      nearReviewSurahNumber = 0;
+      nearReviewStartAyah = 0;
+      nearReviewEndAyah = 0;
+      farReviewSurahNumber = 0;
+      farReviewStartAyah = 0;
+      farReviewEndAyah = 0;
+    }
 
     function handleMemorizationSurahChange(event: Event) {
       const target = event.target as HTMLSelectElement;
