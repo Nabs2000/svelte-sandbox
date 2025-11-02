@@ -3,6 +3,8 @@
 <script>
     import Nav from "../components/Nav.svelte";
     import Form from "../components/Form.svelte";
+    import History from "../components/History.svelte";
 </script>
 <Nav />
 <Form />
+<History />
