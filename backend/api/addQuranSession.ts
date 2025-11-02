@@ -1,6 +1,5 @@
+import supabase from "../supabase/supabaseClient"
 
-import { createClient } from '@supabase/supabase-js'
-
-const supabaseUrl = 'https://wckporwaswajyybhbcre.supabase.co'
-const supabaseKey = process.env.SUPABASE_KEY
-const supabase = createClient(supabaseUrl, supabaseKey)
+export default function addQuranSession() {
+    // TODO: Add Quran session to Supabase
+}
