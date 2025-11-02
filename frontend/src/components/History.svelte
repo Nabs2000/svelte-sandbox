@@ -10,11 +10,13 @@
 
 <h1>History</h1>
 {#each sessions as session}
-  <p>{session.id}</p>
-  <p>{session.createdAt}</p>
-  <p>{session.session_type}</p>
-  <p>{session.surah_num}</p>
-  <p>{session.surah_name}</p>
-  <p>{session.start_ayah}</p>
-  <p>{session.end_ayah}</p>
+  <div class="session">
+    <p>{session.id}</p>
+    <p>{session.createdAt}</p>
+    <p>{session.session_type}</p>
+    <p>{session.surah_num}</p>
+    <p>{session.surah_name}</p>
+    <p>{session.start_ayah}</p>
+    <p>{session.end_ayah}</p>
+  </div>
 {/each}
